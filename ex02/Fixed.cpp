@@ -12,6 +12,8 @@
 
 #include "Fixed.hpp"
 
+// Constructors
+
 Fixed::Fixed(void) : _n(0)
 {
 	return ;
@@ -39,6 +41,32 @@ Fixed::~Fixed(void)
 {
 	return ;
 }
+
+// Getter - Setter
+
+int	Fixed::getRawBits(void) const
+{
+	return (_n);
+}
+
+void	Fixed::setRawBits(int const raw)
+{
+	_n = raw;
+}
+
+// Conversions
+
+float	Fixed::toFloat(void) const
+{
+	return (static_cast<float>(getRawBits()) / static_cast<float>(1 << _fracbits));
+}
+
+int	Fixed::toInt(void) const
+{
+	return (getRawBits() / (1 << _fracbits));
+}
+
+// Comparison Operators
 
 Fixed const	&Fixed::operator=(Fixed const &rhs)
 {
@@ -88,75 +116,61 @@ Fixed const	&Fixed::operator!=(Fixed const &rhs) const
 	return (rhs);
 }
 
+// Arithmetic Operators
+
 Fixed const	&Fixed::operator+(Fixed const &rhs)
 {
-	setRawBits(roundf((this->toFloat() + rhs.toFloat()) * (1 << _fracbits)));
+	setRawBits(getRawBits() + rhs.getRawBits());
 	return (*this);
 }
 
 Fixed const	&Fixed::operator-(Fixed const &rhs)
 {
-	setRawBits(roundf((this->toFloat() - rhs.toFloat()) * (1 << _fracbits)));
+	setRawBits(getRawBits() - rhs.getRawBits());
 	return (*this);
 }
 
 Fixed const	&Fixed::operator*(Fixed const &rhs)
 {
-	setRawBits(roundf((this->toFloat() * rhs.toFloat()) * (1 << _fracbits)));
+	setRawBits(roundf((toFloat() * rhs.toFloat()) * (1 << _fracbits)));
 	return (*this);
 }
 
 Fixed const	&Fixed::operator/(Fixed const &rhs)
 {
-	setRawBits(roundf((this->toFloat() / rhs.toFloat()) * (1 << _fracbits)));
+	setRawBits(roundf((toFloat() / rhs.toFloat()) * (1 << _fracbits)));
 	return (*this);
 }
 
+// ++ and -- operators
+
 Fixed const	&Fixed::operator++()
 {
-	setRawBits((toFloat() + 1) * (1 << _fracbits));
+	setRawBits(getRawBits() + 1);
 	return (*this);
 }
 
 Fixed const	Fixed::operator++(int)
 {
 	Fixed	temp = *this;
-	setRawBits((toFloat() + 1) * (1 << _fracbits));
+	++(*this);
 	return (temp);
 }
 
 Fixed const	&Fixed::operator--()
 {
-	setRawBits((toFloat() - 1) * (1 << _fracbits));
+	setRawBits(getRawBits() - 1);
 	return (*this);
 }
 
 Fixed const	Fixed::operator--(int)
 {
 	Fixed	temp = *this;
-	setRawBits((toFloat() - 1) * (1 << _fracbits));
+	--(*this);
 	return (temp);
 }
 
-int	Fixed::getRawBits(void) const
-{
-	return (_n);
-}
-
-void	Fixed::setRawBits(int const raw)
-{
-	_n = raw;
-}
-
-float	Fixed::toFloat(void) const
-{
-	return (static_cast<float>(getRawBits()) / (1 << _fracbits));
-}
-
-int	Fixed::toInt(void) const
-{
-	return (getRawBits() / (1 << _fracbits));
-}
+// Min - Max
 
 Fixed const	&Fixed::min(Fixed &a, Fixed &b)
 {
@@ -177,6 +191,8 @@ Fixed const	&Fixed::max(Fixed const &a, Fixed const &b)
 {
 	return (a > b);
 }
+
+// Outside Class
 
 std::ostream	&operator<<(std::ostream &o, Fixed const &rhs)
 {
