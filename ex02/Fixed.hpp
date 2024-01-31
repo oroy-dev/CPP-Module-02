@@ -6,7 +6,7 @@
 /*   By: olivierroy <olivierroy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:12 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/30 11:49:46 by olivierroy       ###   ########.fr       */
+/*   Updated: 2024/01/30 19:27:04 by olivierroy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 # define FIXED_H
 
 # include <iostream>
+# include <sstream>
+# include <string>
+# include <cmath>
 
 class Fixed
 {
@@ -25,6 +28,8 @@ private:
 public:
 
 	Fixed(void);
+	Fixed(int const n);
+	Fixed(float const f);
 	Fixed(Fixed const &src);
 	~Fixed();
 
@@ -32,7 +37,12 @@ public:
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
+
+	float	toFloat(void) const;
+	int		toInt(void) const;
 	
 };
+
+std::ostream	&operator<<(std::ostream &o, Fixed const &rhs);
 
 #endif
