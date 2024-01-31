@@ -6,7 +6,7 @@
 /*   By: olivierroy <olivierroy@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:14 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/30 19:48:17 by olivierroy       ###   ########.fr       */
+/*   Updated: 2024/01/30 23:09:00 by olivierroy       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,47 +14,132 @@
 
 Fixed::Fixed(void) : _n(0)
 {
-	std::cout << "Default constructor called" << std::endl;
 	return ;
 }
 
 Fixed::Fixed(int const n)
 {
-	std::cout << "Int constructor called" << std::endl;
 	setRawBits(n * (1 << _fracbits));
 	return ;
 }
 
 Fixed::Fixed(float const f)
 {
-	std::cout << "Float constructor called" << std::endl;
 	setRawBits(roundf(f * (1 << _fracbits)));
 	return ;
 }
 
 Fixed::Fixed(Fixed const &src)
 {
-	std::cout << "Copy constructor called" << std::endl;
 	*this = src;
 	return ;
 }
 
 Fixed::~Fixed(void)
 {
-	std::cout << "Destructor called" << std::endl;
 	return ;
 }
 
-Fixed	&Fixed::operator=(Fixed const &rhs)
+Fixed const	&Fixed::operator=(Fixed const &rhs)
 {
-	std::cout << "Copy assignment operator called" << std::endl;
 	setRawBits(rhs.getRawBits());
 	return *this;
 }
 
+Fixed const	&Fixed::operator>(Fixed const &rhs) const
+{
+	if (getRawBits() > rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator<(Fixed const &rhs) const
+{
+	if (getRawBits() < rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator>=(Fixed const &rhs) const
+{
+	if (getRawBits() >= rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator<=(Fixed const &rhs) const
+{
+	if (getRawBits() <= rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator==(Fixed const &rhs) const
+{
+	if (getRawBits() == rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator!=(Fixed const &rhs) const
+{
+	if (getRawBits() != rhs.getRawBits())
+		return (*this);
+	return (rhs);
+}
+
+Fixed const	&Fixed::operator+(Fixed const &rhs)
+{
+	setRawBits(roundf((this->toFloat() + rhs.toFloat()) * (1 << _fracbits)));
+	return (*this);
+}
+
+Fixed const	&Fixed::operator-(Fixed const &rhs)
+{
+	setRawBits(roundf((this->toFloat() - rhs.toFloat()) * (1 << _fracbits)));
+	return (*this);
+}
+
+Fixed const	&Fixed::operator*(Fixed const &rhs)
+{
+	setRawBits(roundf((this->toFloat() * rhs.toFloat()) * (1 << _fracbits)));
+	return (*this);
+}
+
+Fixed const	&Fixed::operator/(Fixed const &rhs)
+{
+	setRawBits(roundf((this->toFloat() / rhs.toFloat()) * (1 << _fracbits)));
+	return (*this);
+}
+
+Fixed const	&Fixed::operator++()
+{
+	setRawBits((toFloat() + 1) * (1 << _fracbits));
+	return (*this);
+}
+
+Fixed const	Fixed::operator++(int)
+{
+	Fixed	temp = *this;
+	setRawBits((toFloat() + 1) * (1 << _fracbits));
+	return (temp);
+}
+
+Fixed const	&Fixed::operator--()
+{
+	setRawBits((toFloat() - 1) * (1 << _fracbits));
+	return (*this);
+}
+
+Fixed const	Fixed::operator--(int)
+{
+	Fixed	temp = *this;
+	setRawBits((toFloat() - 1) * (1 << _fracbits));
+	return (temp);
+}
+
 int	Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
 	return (_n);
 }
 
@@ -71,6 +156,26 @@ float	Fixed::toFloat(void) const
 int	Fixed::toInt(void) const
 {
 	return (getRawBits() / (1 << _fracbits));
+}
+
+Fixed const	&Fixed::min(Fixed &a, Fixed &b)
+{
+	return (a < b);
+}
+
+Fixed const	&Fixed::min(Fixed const &a, Fixed const &b)
+{
+	return (a < b);
+}
+
+Fixed const	&Fixed::max(Fixed &a, Fixed &b)
+{
+	return (a > b);
+}
+
+Fixed const	&Fixed::max(Fixed const &a, Fixed const &b)
+{
+	return (a > b);
 }
 
 std::ostream	&operator<<(std::ostream &o, Fixed const &rhs)
