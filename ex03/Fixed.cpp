@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:14 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/31 19:15:29 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/01 13:48:53 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,102 +68,98 @@ int	Fixed::toInt(void) const
 
 // Comparison Operators
 
-Fixed const	&Fixed::operator=(Fixed const &rhs)
+Fixed	&Fixed::operator=(Fixed const &rhs)
 {
 	setRawBits(rhs.getRawBits());
 	return *this;
 }
 
-Fixed const	&Fixed::operator>(Fixed const &rhs) const
+bool	Fixed::operator>(Fixed const &rhs) const
 {
-	if (getRawBits() > rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() > rhs.getRawBits());
 }
 
-Fixed const	&Fixed::operator<(Fixed const &rhs) const
+bool	Fixed::operator<(Fixed const &rhs) const
 {
-	if (getRawBits() < rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() < rhs.getRawBits());
 }
 
-Fixed const	&Fixed::operator>=(Fixed const &rhs) const
+bool	Fixed::operator>=(Fixed const &rhs) const
 {
-	if (getRawBits() >= rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() >= rhs.getRawBits());
 }
 
-Fixed const	&Fixed::operator<=(Fixed const &rhs) const
+bool	Fixed::operator<=(Fixed const &rhs) const
 {
-	if (getRawBits() <= rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() <= rhs.getRawBits());
 }
 
-Fixed const	&Fixed::operator==(Fixed const &rhs) const
+bool	Fixed::operator==(Fixed const &rhs) const
 {
-	if (getRawBits() == rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() == rhs.getRawBits());
 }
 
-Fixed const	&Fixed::operator!=(Fixed const &rhs) const
+bool	Fixed::operator!=(Fixed const &rhs) const
 {
-	if (getRawBits() != rhs.getRawBits())
-		return (*this);
-	return (rhs);
+	return (getRawBits() != rhs.getRawBits());
 }
 
 // Arithmetic Operators
 
-Fixed const	&Fixed::operator+(Fixed const &rhs)
+Fixed	Fixed::operator+(Fixed const &rhs) const
 {
-	setRawBits(getRawBits() + rhs.getRawBits());
-	return (*this);
+	Fixed	result;
+
+	result._n = getRawBits() + rhs.getRawBits();
+	return (result);
 }
 
-Fixed const	&Fixed::operator-(Fixed const &rhs)
+Fixed	Fixed::operator-(Fixed const &rhs) const
 {
-	setRawBits(getRawBits() - rhs.getRawBits());
-	return (*this);
+	Fixed	result;
+
+	result._n = getRawBits() - rhs.getRawBits();
+	return (result);
 }
 
-Fixed const	&Fixed::operator*(Fixed const &rhs)
+Fixed	Fixed::operator*(Fixed const &rhs) const
 {
-	setRawBits(roundf((toFloat() * rhs.toFloat()) * (1 << _fracbits)));
-	return (*this);
+	Fixed	result;
+
+	result._n = roundf((toFloat() * rhs.toFloat()) * (1 << _fracbits));
+	return (result);
 }
 
-Fixed const	&Fixed::operator/(Fixed const &rhs)
+Fixed	Fixed::operator/(Fixed const &rhs) const
 {
-	setRawBits(roundf((toFloat() / rhs.toFloat()) * (1 << _fracbits)));
-	return (*this);
+	Fixed	result;
+	
+	result._n = roundf((toFloat() / rhs.toFloat()) * (1 << _fracbits));
+	return (result);
 }
 
 // ++ and -- operators
 
-Fixed const	&Fixed::operator++()
+Fixed	&Fixed::operator++()
 {
 	setRawBits(getRawBits() + 1);
 	return (*this);
 }
 
-Fixed const	Fixed::operator++(int)
+Fixed	Fixed::operator++(int)
 {
 	Fixed	temp = *this;
 	++(*this);
 	return (temp);
 }
 
-Fixed const	&Fixed::operator--()
+Fixed	&Fixed::operator--()
 {
 	setRawBits(getRawBits() - 1);
 	return (*this);
 }
 
-Fixed const	Fixed::operator--(int)
+Fixed	Fixed::operator--(int)
 {
 	Fixed	temp = *this;
 	--(*this);
@@ -172,24 +168,24 @@ Fixed const	Fixed::operator--(int)
 
 // Min - Max
 
-Fixed const	&Fixed::min(Fixed &a, Fixed &b)
+Fixed	&Fixed::min(Fixed &a, Fixed &b)
 {
-	return (a < b);
+	return (a < b ? a : b);
 }
 
 Fixed const	&Fixed::min(Fixed const &a, Fixed const &b)
 {
-	return (a < b);
+	return (a < b ? a : b);
 }
 
-Fixed const	&Fixed::max(Fixed &a, Fixed &b)
+Fixed	&Fixed::max(Fixed &a, Fixed &b)
 {
-	return (a > b);
+	return (a > b ? a : b);
 }
 
 Fixed const	&Fixed::max(Fixed const &a, Fixed const &b)
 {
-	return (a > b);
+	return (a > b ? a : b);
 }
 
 // Outside Class

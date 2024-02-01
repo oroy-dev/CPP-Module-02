@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:33 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/31 19:59:38 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/01 14:49:53 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,13 @@ public:
 	Point(Point const &src);
 	~Point();
 
-	Point const	&operator=(Point const &rhs);
+	Point	&operator=(Point const &rhs);
 
 	Fixed const	&getX(void) const;
 	Fixed const	&getY(void) const;
+
+	float	getFX(void) const;
+	float	getFY(void) const;
 
 };
 

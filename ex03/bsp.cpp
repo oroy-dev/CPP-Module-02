@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:19:37 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/31 20:01:16 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/01 15:10:48 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,28 @@
 
 float	sign(Point const p1, Point const p2, Point const p3)
 {
-    return (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
+	Fixed	result;
+
+	result = (p1.getX() - p3.getX()) * (p2.getY() - p3.getY()) - (p2.getX() - p3.getX()) * (p1.getY() - p3.getY());
+	return (result.toFloat());
 }
 
 bool	bsp(Point const a, Point const b, Point const c, Point const point)
 {
-	float d1, d2, d3;
-    bool has_neg, has_pos;
+	float	d1, d2, d3;
+	bool	has_neg, has_pos;
 
-    d1 = sign(point, a, b);
-    d2 = sign(point, b, c);
-    d3 = sign(point, c, a);
+	std::cout << "YO" << std::endl;
+	std::cout << b.getX() << std::endl;
+	std::cout << b.getX() << std::endl;
+	d1 = sign(point, a, b);
+	d2 = sign(point, b, c);
+	d3 = sign(point, c, a);
 
-    has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
-    has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+	std::cout << "d1 = " << d1 << " d2 = " << d2 << " d3 = " << d3 << std::endl;
 
-    return !(has_neg && has_pos);
+	has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+	has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+	return !(has_neg && has_pos);
 }
