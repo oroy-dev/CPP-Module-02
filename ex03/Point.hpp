@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:33 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 14:49:53 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/01 16:05:48 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ public:
 	Fixed const	&getX(void) const;
 	Fixed const	&getY(void) const;
 
-	float	getFX(void) const;
-	float	getFY(void) const;
-
 };
 
-bool	bsp(Point const a, Point const b, Point const c, Point const point);
+bool	bsp(Point const &a, Point const &b, Point const &c, Point const &point);
 
 #endif

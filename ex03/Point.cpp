@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:36 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 15:07:58 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/01 16:05:42 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,4 @@ Fixed const	&Point::getX(void) const
 Fixed const	&Point::getY(void) const
 {
 	return (y);
-}
-
-float Point::getFX(void) const
-{
-	return (x.toFloat());
-}
-
-float Point::getFY(void) const
-{
-	return (y.toFloat());
 }
