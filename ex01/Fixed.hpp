@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:12 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 13:25:45 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/02 16:11:08 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ public:
 	Fixed(int const n);
 	Fixed(float const f);
 	Fixed(Fixed const &src);
-	~Fixed();
+	~Fixed(void);
 
 	Fixed	&operator=(Fixed const &rhs);
 

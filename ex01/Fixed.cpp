@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivierroy <olivierroy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:14 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/30 19:48:17 by olivierroy       ###   ########.fr       */
+/*   Updated: 2024/02/02 16:06:16 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Fixed::Fixed(void) : _n(0)
 Fixed::Fixed(int const n)
 {
 	std::cout << "Int constructor called" << std::endl;
-	setRawBits(n * (1 << _fracbits));
+	setRawBits(n << _fracbits);
 	return ;
 }
 
@@ -54,7 +54,6 @@ Fixed	&Fixed::operator=(Fixed const &rhs)
 
 int	Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
 	return (_n);
 }
 
@@ -70,7 +69,7 @@ float	Fixed::toFloat(void) const
 
 int	Fixed::toInt(void) const
 {
-	return (getRawBits() / (1 << _fracbits));
+	return (getRawBits() >> _fracbits);
 }
 
 std::ostream	&operator<<(std::ostream &o, Fixed const &rhs)

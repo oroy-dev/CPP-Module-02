@@ -6,7 +6,7 @@
 #    By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 15:50:37 by oroy              #+#    #+#              #
-#    Updated: 2024/02/01 13:51:32 by oroy             ###   ########.fr        #
+#    Updated: 2024/02/02 16:46:57 by oroy             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC		:= main.cpp Fixed.cpp Point.cpp bsp.cpp
 OBJ		:= $(patsubst %.cpp, $(OBJDIR)/%.o, $(SRC))
 
 CC		:= c++
-FLAGS	:= -Wall -Wextra -Werror -std=c++98
+FLAGS	:= -Wall -Wextra -Werror -std=c++98 -g
 
 RM		:= rm -rf
 

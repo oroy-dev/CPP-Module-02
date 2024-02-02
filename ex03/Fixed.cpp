@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:14 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 13:48:53 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/02 17:32:01 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ Fixed::Fixed(void) : _n(0)
 
 Fixed::Fixed(int const n)
 {
-	setRawBits(n * (1 << _fracbits));
+	setRawBits(n << _fracbits);
 	return ;
 }
 
@@ -58,12 +58,12 @@ void	Fixed::setRawBits(int const raw)
 
 float	Fixed::toFloat(void) const
 {
-	return (static_cast<float>(getRawBits()) / static_cast<float>(1 << _fracbits));
+	return (static_cast<float>(getRawBits()) / (1 << _fracbits));
 }
 
 int	Fixed::toInt(void) const
 {
-	return (getRawBits() / (1 << _fracbits));
+	return (getRawBits() >> _fracbits);
 }
 
 // Comparison Operators

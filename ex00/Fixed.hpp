@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olivierroy <olivierroy@student.42.fr>      +#+  +:+       +#+        */
+/*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 19:03:12 by oroy              #+#    #+#             */
-/*   Updated: 2024/01/30 11:49:46 by olivierroy       ###   ########.fr       */
+/*   Updated: 2024/02/02 16:10:44 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 
 	Fixed(void);
 	Fixed(Fixed const &src);
-	~Fixed();
+	~Fixed(void);
 
 	Fixed	&operator=(Fixed const &rhs);
 

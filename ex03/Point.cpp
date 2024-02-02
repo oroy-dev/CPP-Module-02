@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:36 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 16:05:42 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/02 17:54:14 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Point::Point(void) : x(0), y(0)
 	return ;
 }
 
-Point::Point(float const f1, float const f2) : x(Fixed(f1)), y(Fixed(f2))
+Point::Point(float const f1, float const f2) : x(f1), y(f2)
 {
 	return ;
 }
@@ -35,7 +35,8 @@ Point::~Point(void)
 
 Point	&Point::operator=(Point const &rhs)
 {
-	(void) rhs;
+	const_cast<Fixed &>(this->x) = rhs.x;
+	const_cast<Fixed &>(this->y) = rhs.y;
 	return (*this);
 }
 

@@ -6,7 +6,7 @@
 /*   By: oroy <oroy@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 18:20:33 by oroy              #+#    #+#             */
-/*   Updated: 2024/02/01 16:05:48 by oroy             ###   ########.fr       */
+/*   Updated: 2024/02/02 17:55:18 by oroy             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	Point(void);
 	Point(float const f1, float const f2);
 	Point(Point const &src);
-	~Point();
+	~Point(void);
 
 	Point	&operator=(Point const &rhs);
 
@@ -36,6 +36,6 @@ public:
 
 };
 
-bool	bsp(Point const &a, Point const &b, Point const &c, Point const &point);
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
